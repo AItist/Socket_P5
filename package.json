@@ -1,0 +1,12 @@
+{
+    "name" : "com.prototype.socketp5",
+    "version": "0.1.0",
+    "displayName": "P5 Socket IO code for Image Processing",
+    "description": "A Sample description that'll show in the package manager.",
+    "unity": "2021.3",
+    "author": {
+        "name": "Hamm-JH",
+        "email": "rimmoyee@gmail.com",
+        "url": ""
+    }
+}
