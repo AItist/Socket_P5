@@ -10,7 +10,7 @@ namespace Socket
         public int tWidth = 512;
         public int tHeight = 512;
         public int tDepth = 3;
-        public string texKey = "_MainTex";
+        public string setTexKey = "_MainTex";
 
         private object lockObject = new object();
 
@@ -51,7 +51,7 @@ namespace Socket
             if (!isDemoScene) { return; }
             if (TEX == null) { return; }
 
-            targetRenderer.material.SetTexture(texKey, TEX);
+            targetRenderer.material.SetTexture(setTexKey, TEX);
         }
 
         private Texture2D Update_CreateTexture2D(int tWidth, int tHeight, int tDepth, byte[] decompressedData)

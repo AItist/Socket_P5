@@ -15,9 +15,21 @@ namespace Socket
         private WebSocket _webSocket;
         public string _serverUrl = "ws://localhost:8082"; // replace with your WebSocket URL
 
-        // Start is called before the first frame update
-        void Start()
+        //// Start is called before the first frame update
+        //void Start()
+        //{
+        //    _webSocket = new WebSocket(_serverUrl);
+        //    _webSocket.OnOpen += OnOpen;
+        //    _webSocket.OnMessage += OnMessage;
+        //    _webSocket.OnClose += OnClose;
+        //    _webSocket.OnError += OnError;
+        //    _webSocket.Connect();
+        //}
+
+        public void Init(string serverURL)
         {
+            _serverUrl = serverURL;
+
             _webSocket = new WebSocket(_serverUrl);
             _webSocket.OnOpen += OnOpen;
             _webSocket.OnMessage += OnMessage;

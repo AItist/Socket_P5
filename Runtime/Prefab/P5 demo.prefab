@@ -179,6 +179,7 @@ MonoBehaviour:
   tHeight: 512
   tDepth: 3
   texKey: _MainTex
+  isDemoScene: 1
   targetRenderer: {fileID: 2640136048747272719}
 --- !u!1001 &31734022278563851
 PrefabInstance:
@@ -187,6 +188,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2640136050064155541}
     m_Modifications:
+    - target: {fileID: 2653491350831511874, guid: acd7c9aa807319046866fdb39a456988,
+        type: 3}
+      propertyPath: env.serverURL
+      value: ws://GAuction.asuscomm.com:40882
+      objectReference: {fileID: 0}
     - target: {fileID: 2653491350831511875, guid: acd7c9aa807319046866fdb39a456988,
         type: 3}
       propertyPath: m_RootOrder

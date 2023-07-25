@@ -4,6 +4,12 @@ using UnityEngine;
 
 namespace Socket
 {
+    [System.Serializable]
+    public struct Env
+    {
+        public string serverURL;
+    }
+
     public class SocketManager : MonoBehaviour
     {
         #region Instance
@@ -26,6 +32,8 @@ namespace Socket
         /// 내부 할당용 소켓 인스턴스
         /// </summary>
         Socket.P5_Websocket socket;
+
+        public Env env;
 
         #region byteQueue
 
@@ -83,6 +91,8 @@ namespace Socket
                 socket = obj.AddComponent<Socket.P5_Websocket>();
                 socket.transform.parent = gameObject.transform;
             }
+
+            socket.Init(env.serverURL);
         }
         
         // Start is called before the first frame update

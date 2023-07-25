@@ -1,12 +1,12 @@
 {
     "name" : "com.prototype.socketp5",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "displayName": "P5 Socket IO code for Image Processing",
-    "description": "A Sample description that'll show in the package manager.",
+    "description": "P5에서 웹 소켓으로 받아오는 이미지를 처리하기 위한 코드",
     "unity": "2021.3",
     "author": {
-        "name": "Hamm-JH",
-        "email": "rimmoyee@gmail.com",
+        "name": "JH",
+        "email": "task@gmail.com",
         "url": ""
     }
 }
