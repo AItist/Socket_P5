@@ -49,11 +49,17 @@ namespace Socket
 
             try
             {
+                //byte[] receivedData = e.RawData;
+                //string decodedStr = e.Data;
+
+                //Debug.Log(1);
+                //string decodedStr = Convert.FromBase64String(e.RawData);
                 string str = System.Text.Encoding.UTF8.GetString(e.RawData);
 
                 string data = JsonConvert.DeserializeObject<string>(str);
 
                 SocketManager.Instance.Enqueue(Convert.FromBase64String(data));
+                //SocketManager.Instance.Enqueue(receivedData);
             }
             catch (Exception ex)
             {
