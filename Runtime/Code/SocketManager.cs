@@ -91,6 +91,7 @@ namespace Socket
                 GameObject obj = new GameObject("P5_Websocket");
                 socket = obj.AddComponent<Socket.P5_Websocket>();
                 socket.transform.parent = gameObject.transform;
+                socket.isP6 = env.isP6;
             }
 
             socket.Init(env.serverURL);

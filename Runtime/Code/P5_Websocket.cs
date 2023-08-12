@@ -14,6 +14,7 @@ namespace Socket
     {
         private WebSocket _webSocket;
         public string _serverUrl = "ws://localhost:8082"; // replace with your WebSocket URL
+        public bool isP6;
 
         //// Start is called before the first frame update
         //void Start()
@@ -54,11 +55,22 @@ namespace Socket
 
                 //Debug.Log(1);
                 //string decodedStr = Convert.FromBase64String(e.RawData);
-                string str = System.Text.Encoding.UTF8.GetString(e.RawData);
+                if (isP6)
+                {
+                    string str = System.Text.Encoding.UTF8.GetString(e.RawData);
 
-                string data = JsonConvert.DeserializeObject<string>(str);
+                    //string data = JsonConvert.DeserializeObject<string>(str);
 
-                SocketManager.Instance.Enqueue(Convert.FromBase64String(data));
+                    SocketManager.Instance.Enqueue(Convert.FromBase64String(str));
+                }
+                else
+                {
+                    string str = System.Text.Encoding.UTF8.GetString(e.RawData);
+
+                    string data = JsonConvert.DeserializeObject<string>(str);
+
+                    SocketManager.Instance.Enqueue(Convert.FromBase64String(data));
+                }
                 //SocketManager.Instance.Enqueue(receivedData);
             }
             catch (Exception ex)
