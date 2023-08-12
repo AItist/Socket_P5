@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.Events;
 
 namespace Socket
 {
     public class TextureUser : MonoBehaviour
     {
+        public UnityEngine.Events.UnityAction<Texture2D> calloutAction;
+
         public bool debug = true;
         public string fileName = "MyTexture"; // 원하는 파일 이름
         private string savePath;
@@ -59,6 +62,15 @@ namespace Socket
                 SaveTextureToPNG(TEX, savePath);
             }
 
+            if (SocketManager.Instance.env.isP6)
+            {
+                Texture2D tex = TEX;
+                if (tex != null)
+                {
+                    calloutAction.Invoke(tex);
+                }
+            }
+
             if (!isDemoScene) { return; }
             if (TEX == null) { return; }
 
@@ -82,5 +94,10 @@ namespace Socket
             File.WriteAllBytes(path, textureBytes);
             Debug.Log("Texture saved to: " + path);
         }
+
+        //private void OnDestroy()
+        //{
+        //    calloutAction.
+        //}
     }
 }

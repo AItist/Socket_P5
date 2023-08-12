@@ -8,6 +8,7 @@ namespace Socket
     public struct Env
     {
         public string serverURL;
+        public bool isP6;
     }
 
     public class SocketManager : MonoBehaviour
