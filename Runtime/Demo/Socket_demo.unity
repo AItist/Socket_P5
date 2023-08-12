@@ -276,6 +276,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2640136050384007497, guid: 4268a3f940a6e4c4c92f351cc21be9f9,
         type: 3}
+      propertyPath: env.isP6
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640136050384007497, guid: 4268a3f940a6e4c4c92f351cc21be9f9,
+        type: 3}
       propertyPath: env.serverURL
       value: ws://192.168.50.30:8074
       objectReference: {fileID: 0}

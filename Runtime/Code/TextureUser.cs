@@ -9,7 +9,11 @@ namespace Socket
 {
     public class TextureUser : MonoBehaviour
     {
-        public UnityEngine.Events.UnityAction<Texture2D> calloutAction;
+        //public UnityEngine.Events.UnityAction<Texture2D> calloutAction;
+        [System.Serializable]
+        public class Texture2DEvent : UnityEvent<Texture2D> { }
+
+        public Texture2DEvent OnTextureUpdated;
 
         public bool debug = true;
         public string fileName = "MyTexture"; // 원하는 파일 이름
@@ -67,7 +71,7 @@ namespace Socket
                 Texture2D tex = TEX;
                 if (tex != null)
                 {
-                    calloutAction.Invoke(tex);
+                    OnTextureUpdated.Invoke(tex);
                 }
             }
 
