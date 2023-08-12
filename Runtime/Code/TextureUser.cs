@@ -2,11 +2,16 @@ using Socket;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 namespace Socket
 {
     public class TextureUser : MonoBehaviour
     {
+        public bool debug = true;
+        public string fileName = "MyTexture"; // 원하는 파일 이름
+        private string savePath;
+
         public int tWidth = 512;
         public int tHeight = 512;
         public int tDepth = 3;
@@ -48,6 +53,12 @@ namespace Socket
 
             TEX = Update_CreateTexture2D(tWidth, tHeight, tDepth, bytes);
 
+            if (debug)
+            {
+                savePath = Application.dataPath + "/" + fileName + ".png"; // 저장 경로 설정
+                SaveTextureToPNG(TEX, savePath);
+            }
+
             if (!isDemoScene) { return; }
             if (TEX == null) { return; }
 
@@ -63,6 +74,13 @@ namespace Socket
             recovered.Apply();
 
             return recovered;
+        }
+
+        public void SaveTextureToPNG(Texture2D texture, string path)
+        {
+            byte[] textureBytes = texture.EncodeToPNG();
+            File.WriteAllBytes(path, textureBytes);
+            Debug.Log("Texture saved to: " + path);
         }
     }
 }
