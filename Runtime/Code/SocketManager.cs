@@ -100,5 +100,10 @@ namespace Socket
         {
             SocketManager.Instance.Init();
         }
+
+        public void Send_Message(string data)
+        {
+            socket.Send_Message(data);
+        }
     }
 }
