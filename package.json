@@ -1,6 +1,6 @@
 {
     "name" : "com.prototype.socketp5",
-    "version": "0.3.3",
+    "version": "0.3.4",
     "displayName": "P5 Socket IO code for Image Processing",
     "description": "P5에서 웹 소켓으로 받아오는 이미지를 처리하기 위한 코드",
     "unity": "2021.3",
