@@ -14,18 +14,52 @@ namespace Socket
     {
         private WebSocket _webSocket;
         public string _serverUrl = "ws://localhost:8082"; // replace with your WebSocket URL
-        public bool isP6;
 
-        //// Start is called before the first frame update
-        //void Start()
-        //{
-        //    _webSocket = new WebSocket(_serverUrl);
-        //    _webSocket.OnOpen += OnOpen;
-        //    _webSocket.OnMessage += OnMessage;
-        //    _webSocket.OnClose += OnClose;
-        //    _webSocket.OnError += OnError;
-        //    _webSocket.Connect();
-        //}
+        #region byteQueue
+
+        // 웹소켓에서 입력받은 데이터를 저장하는 큐
+        public Queue<byte[]> byteQueue = new Queue<byte[]>();
+        private object lockObject = new object();
+
+        /// <summary>
+        /// byteQueue의 데이터 수가 0인가?
+        /// </summary>
+        /// <returns>bool</returns>
+        public bool IsQueueIsEmpty()
+        {
+            return byteQueue.Count == 0;
+        }
+
+        /// <summary>
+        /// byteQueue에 byte[] 배열 투입
+        /// </summary>
+        /// <param name="item"></param>
+        public void Enqueue(byte[] item)
+        {
+            lock (lockObject)
+            {
+                byteQueue.Enqueue(item);
+            }
+        }
+
+        /// <summary>
+        /// byteQueue에 마지막 데이터를 가져오기
+        /// </summary>
+        /// <returns>byte[] 배열</returns>
+        public byte[] Dequeue_LastOne()
+        {
+            lock (lockObject)
+            {
+                byte[] item = null;
+                while (byteQueue.Count > 0)
+                {
+                    item = byteQueue.Dequeue();
+                }
+                return item;
+            }
+        }
+
+        #endregion byteQueue
 
         public void Init(string serverURL)
         {
@@ -50,28 +84,11 @@ namespace Socket
 
             try
             {
-                //byte[] receivedData = e.RawData;
-                //string decodedStr = e.Data;
+                string str = System.Text.Encoding.UTF8.GetString(e.RawData);
 
-                //Debug.Log(1);
-                //string decodedStr = Convert.FromBase64String(e.RawData);
-                if (isP6)
-                {
-                    string str = System.Text.Encoding.UTF8.GetString(e.RawData);
+                string data = JsonConvert.DeserializeObject<string>(str);
 
-                    string data = JsonConvert.DeserializeObject<string>(str);
-
-                    SocketManager.Instance.Enqueue(Convert.FromBase64String(data));
-                }
-                else
-                {
-                    string str = System.Text.Encoding.UTF8.GetString(e.RawData);
-
-                    string data = JsonConvert.DeserializeObject<string>(str);
-
-                    SocketManager.Instance.Enqueue(Convert.FromBase64String(data));
-                }
-                //SocketManager.Instance.Enqueue(receivedData);
+                Enqueue(Convert.FromBase64String(data));
             }
             catch (Exception ex)
             {

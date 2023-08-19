@@ -8,7 +8,6 @@ namespace Socket
     public struct Env
     {
         public string serverURL;
-        public bool isP6;
     }
 
     public class SocketManager : MonoBehaviour
@@ -32,55 +31,9 @@ namespace Socket
         /// <summary>
         /// 내부 할당용 소켓 인스턴스
         /// </summary>
-        Socket.P5_Websocket socket;
+        public Socket.P5_Websocket socket;
 
         public Env env;
-
-        #region byteQueue
-
-        // 웹소켓에서 입력받은 데이터를 저장하는 큐
-        public Queue<byte[]> byteQueue = new Queue<byte[]>();
-        private object lockObject = new object();
-
-        /// <summary>
-        /// byteQueue의 데이터 수가 0인가?
-        /// </summary>
-        /// <returns>bool</returns>
-        public bool IsQueueIsEmpty()
-        {
-            return byteQueue.Count == 0;
-        }
-
-        /// <summary>
-        /// byteQueue에 byte[] 배열 투입
-        /// </summary>
-        /// <param name="item"></param>
-        public void Enqueue(byte[] item)
-        {
-            lock (lockObject)
-            {
-                byteQueue.Enqueue(item);
-            }
-        }
-
-        /// <summary>
-        /// byteQueue에 마지막 데이터를 가져오기
-        /// </summary>
-        /// <returns>byte[] 배열</returns>
-        public byte[] Dequeue_LastOne()
-        {
-            lock (lockObject)
-            {
-                byte[] item = null;
-                while (byteQueue.Count > 0)
-                {
-                    item = byteQueue.Dequeue();
-                }
-                return item;
-            }
-        }
-
-        #endregion byteQueue
 
         void Init()
         {
@@ -91,7 +44,6 @@ namespace Socket
                 GameObject obj = new GameObject("P5_Websocket");
                 socket = obj.AddComponent<Socket.P5_Websocket>();
                 socket.transform.parent = gameObject.transform;
-                socket.isP6 = env.isP6;
             }
 
             socket.Init(env.serverURL);

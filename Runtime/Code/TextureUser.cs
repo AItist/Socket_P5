@@ -53,9 +53,9 @@ namespace Socket
         // Update is called once per frame
         void Update()
         {
-            if (SocketManager.Instance.IsQueueIsEmpty()) { return; }
+            if (SocketManager.Instance.socket.IsQueueIsEmpty()) { return; }
 
-            byte[] bytes = SocketManager.Instance.Dequeue_LastOne();
+            byte[] bytes = SocketManager.Instance.socket.Dequeue_LastOne();
 
 
             TEX = Update_CreateTexture2D(tWidth, tHeight, tDepth, bytes);
@@ -66,13 +66,10 @@ namespace Socket
                 SaveTextureToPNG(TEX, savePath);
             }
 
-            if (SocketManager.Instance.env.isP6)
+            Texture2D tex = TEX;
+            if (tex != null)
             {
-                Texture2D tex = TEX;
-                if (tex != null)
-                {
-                    OnTextureUpdated.Invoke(tex);
-                }
+                OnTextureUpdated.Invoke(tex);
             }
 
             if (!isDemoScene) { return; }
