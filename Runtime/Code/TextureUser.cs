@@ -99,9 +99,6 @@ namespace Socket
             Debug.Log("Texture saved to: " + path);
         }
 
-        //private void OnDestroy()
-        //{
-        //    calloutAction.
-        //}
+        
     }
 }

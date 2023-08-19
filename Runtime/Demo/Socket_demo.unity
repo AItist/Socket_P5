@@ -282,7 +282,7 @@ PrefabInstance:
     - target: {fileID: 2640136050384007497, guid: 4268a3f940a6e4c4c92f351cc21be9f9,
         type: 3}
       propertyPath: env.serverURL
-      value: ws://192.168.50.30:8074
+      value: ws://localhost:8074
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4268a3f940a6e4c4c92f351cc21be9f9, type: 3}

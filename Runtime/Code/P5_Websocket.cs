@@ -59,9 +59,9 @@ namespace Socket
                 {
                     string str = System.Text.Encoding.UTF8.GetString(e.RawData);
 
-                    //string data = JsonConvert.DeserializeObject<string>(str);
+                    string data = JsonConvert.DeserializeObject<string>(str);
 
-                    SocketManager.Instance.Enqueue(Convert.FromBase64String(str));
+                    SocketManager.Instance.Enqueue(Convert.FromBase64String(data));
                 }
                 else
                 {
