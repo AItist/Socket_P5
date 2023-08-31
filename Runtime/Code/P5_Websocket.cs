@@ -17,12 +17,12 @@ namespace Socket
 
         #region byteQueue
 
-        // À¥¼ÒÄÏ¿¡¼­ ÀÔ·Â¹ÞÀº µ¥ÀÌÅÍ¸¦ ÀúÀåÇÏ´Â Å¥
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½Ô·Â¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Å¥
         public Queue<byte[]> byteQueue = new Queue<byte[]>();
         private object lockObject = new object();
 
         /// <summary>
-        /// byteQueueÀÇ µ¥ÀÌÅÍ ¼ö°¡ 0ÀÎ°¡?
+        /// byteQueueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 0ï¿½Î°ï¿½?
         /// </summary>
         /// <returns>bool</returns>
         public bool IsQueueIsEmpty()
@@ -31,7 +31,7 @@ namespace Socket
         }
 
         /// <summary>
-        /// byteQueue¿¡ byte[] ¹è¿­ ÅõÀÔ
+        /// byteQueueï¿½ï¿½ byte[] ï¿½è¿­ ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="item"></param>
         public void Enqueue(byte[] item)
@@ -43,9 +43,9 @@ namespace Socket
         }
 
         /// <summary>
-        /// byteQueue¿¡ ¸¶Áö¸· µ¥ÀÌÅÍ¸¦ °¡Á®¿À±â
+        /// byteQueueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
-        /// <returns>byte[] ¹è¿­</returns>
+        /// <returns>byte[] ï¿½è¿­</returns>
         public byte[] Dequeue_LastOne()
         {
             lock (lockObject)
@@ -86,9 +86,9 @@ namespace Socket
             {
                 string str = System.Text.Encoding.UTF8.GetString(e.RawData);
 
-                string data = JsonConvert.DeserializeObject<string>(str);
+                // string data = JsonConvert.DeserializeObject<string>(str);
 
-                Enqueue(Convert.FromBase64String(data));
+                Enqueue(Convert.FromBase64String(str));
             }
             catch (Exception ex)
             {
