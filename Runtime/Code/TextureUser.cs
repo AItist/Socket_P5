@@ -16,17 +16,17 @@ namespace Socket
         public Texture2DEvent OnTextureUpdated;
 
         public bool debug = true;
-        public string fileName = "MyTexture"; // ¿øÇÏ´Â ÆÄÀÏ ÀÌ¸§
+        public string fileName = "MyTexture"; // ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
         private string savePath;
 
         public int tWidth = 512;
         public int tHeight = 512;
         public int tDepth = 3;
-        public string setTexKey = "_MainTex";
+        public string setTexKey = "_BaseColorMap";
 
         private object lockObject = new object();
 
-        [Header("µ¥¸ð ¾À¿¡¼­ ½ÇÇàÀÎ°¡?")]
+        [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½?")]
         public bool isDemoScene;
         public MeshRenderer targetRenderer;
 
@@ -62,7 +62,7 @@ namespace Socket
 
             if (debug)
             {
-                savePath = Application.dataPath + "/" + fileName + ".png"; // ÀúÀå °æ·Î ¼³Á¤
+                savePath = Application.dataPath + "/" + fileName + ".png"; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 SaveTextureToPNG(TEX, savePath);
             }
 
