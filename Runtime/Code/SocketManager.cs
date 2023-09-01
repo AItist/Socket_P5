@@ -37,7 +37,7 @@ namespace Socket
 
         void Init()
         {
-            Debug.Log("Socket Manager Initialized");
+            //Debug.Log("Socket Manager Initialized");
 
             if (socket == null)
             {

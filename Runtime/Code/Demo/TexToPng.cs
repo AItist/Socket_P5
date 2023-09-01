@@ -25,7 +25,7 @@ public class TexToPng : MonoBehaviour
     {
         if (pngBytes == null)
         {
-            Debug.LogWarning("png 데이터가 존재하지 않습니다.");
+            //Debug.LogWarning("png 데이터가 존재하지 않습니다.");
             return null;
         }
 

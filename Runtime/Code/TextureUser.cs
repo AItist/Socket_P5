@@ -93,7 +93,7 @@ namespace Socket
         {
             byte[] textureBytes = texture.EncodeToPNG();
             File.WriteAllBytes(path, textureBytes);
-            Debug.Log("Texture saved to: " + path);
+            //Debug.Log("Texture saved to: " + path);
         }
 
         

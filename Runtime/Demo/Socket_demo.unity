@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &80317856 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2640136050384007503, guid: 4268a3f940a6e4c4c92f351cc21be9f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 682198874}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &104437957
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +289,26 @@ PrefabInstance:
         type: 3}
       propertyPath: env.serverURL
       value: ws://localhost:8074
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640136050591976678, guid: 4268a3f940a6e4c4c92f351cc21be9f9,
+        type: 3}
+      propertyPath: OnTextureUpdated.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640136050591976678, guid: 4268a3f940a6e4c4c92f351cc21be9f9,
+        type: 3}
+      propertyPath: OnTextureUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640136050591976678, guid: 4268a3f940a6e4c4c92f351cc21be9f9,
+        type: 3}
+      propertyPath: OnTextureUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 80317856}
+    - target: {fileID: 2640136050591976678, guid: 4268a3f940a6e4c4c92f351cc21be9f9,
+        type: 3}
+      propertyPath: OnTextureUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4268a3f940a6e4c4c92f351cc21be9f9, type: 3}

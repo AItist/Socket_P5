@@ -75,7 +75,7 @@ namespace Socket
 
         private void OnOpen(object sender, EventArgs e)
         {
-            Debug.Log("WebSocket opened.");
+            //Debug.Log("WebSocket opened.");
         }
 
         private void OnMessage(object sender, MessageEventArgs e)
@@ -98,12 +98,12 @@ namespace Socket
 
         private void OnClose(object sender, CloseEventArgs e)
         {
-            Debug.Log("WebSocket closed.");
+            //Debug.Log("WebSocket closed.");
         }
 
         private void OnError(object sender, ErrorEventArgs e)
         {
-            Debug.LogError("WebSocket error: " + e.Message);
+            //Debug.LogError("WebSocket error: " + e.Message);
         }
 
         public void Send_Message(string message)
