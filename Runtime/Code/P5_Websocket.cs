@@ -7,13 +7,18 @@ namespace Socket
     using Socket;
     using Newtonsoft.Json;
     using System;
+    using System.Threading.Tasks;
     using WebSocketSharp;
     using ErrorEventArgs = WebSocketSharp.ErrorEventArgs;
 
     public class P5_Websocket : MonoBehaviour
     {
         private WebSocket _webSocket;
-        public string _serverUrl = "ws://localhost:8082"; // replace with your WebSocket URL
+        public string _serverUrl = "ws://localhost:8074"; // replace with your WebSocket URL
+
+        public bool _isScene1;
+        private int attemptCount = 0;
+
 
         #region byteQueue
 
@@ -61,9 +66,33 @@ namespace Socket
 
         #endregion byteQueue
 
-        public void Init(string serverURL)
+        public async void Init(string serverURL, bool isScene1)
         {
+            _isScene1 = isScene1;
             _serverUrl = serverURL;
+
+            attemptCount++;
+            await Task.Run(() => ConnectToWebSocket());
+        }
+
+        public async void Init()
+        {
+            attemptCount++;
+            await Task.Run(() => ConnectToWebSocket());
+        }
+
+        private void ConnectToWebSocket()
+        {
+            Debug.Log($"Attempt to Connect {attemptCount}");
+
+            if (_webSocket != null)
+            {
+                _webSocket.OnOpen -= OnOpen;
+                _webSocket.OnMessage -= OnMessage;
+                _webSocket.OnClose -= OnClose;
+                _webSocket.OnError -= OnError;
+                _webSocket.Close();
+            }
 
             _webSocket = new WebSocket(_serverUrl);
             _webSocket.OnOpen += OnOpen;
@@ -75,7 +104,8 @@ namespace Socket
 
         private void OnOpen(object sender, EventArgs e)
         {
-            //Debug.Log("WebSocket opened.");
+            attemptCount = 0;
+            Debug.Log("WebSocket opened.");
         }
 
         private void OnMessage(object sender, MessageEventArgs e)
@@ -84,11 +114,22 @@ namespace Socket
 
             try
             {
-                string str = System.Text.Encoding.UTF8.GetString(e.RawData);
+                if (_isScene1)
+                {
+                    string str = System.Text.Encoding.UTF8.GetString(e.RawData);
 
-                // string data = JsonConvert.DeserializeObject<string>(str);
+                    string data = JsonConvert.DeserializeObject<string>(str);
 
-                Enqueue(Convert.FromBase64String(str));
+                    Enqueue(Convert.FromBase64String(data));
+                }
+                else
+                {
+                    string str = System.Text.Encoding.UTF8.GetString(e.RawData);
+
+                    // string data = JsonConvert.DeserializeObject<string>(str);
+
+                    Enqueue(Convert.FromBase64String(str));
+                }
             }
             catch (Exception ex)
             {
@@ -98,12 +139,17 @@ namespace Socket
 
         private void OnClose(object sender, CloseEventArgs e)
         {
-            //Debug.Log("WebSocket closed.");
+            Debug.Log("WebSocket closed.");
+
+            Init();
         }
 
         private void OnError(object sender, ErrorEventArgs e)
         {
-            //Debug.LogError("WebSocket error: " + e.Message);
+            Debug.LogError("WebSocket error: " + e.Message);
+            _webSocket.Close();
+
+            Init();
         }
 
         public void Send_Message(string message)

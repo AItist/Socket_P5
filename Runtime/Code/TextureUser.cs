@@ -26,7 +26,7 @@ namespace Socket
 
         private object lockObject = new object();
 
-        [Header("���� ������ �����ΰ�?")]
+        [Header("demo scene option")]
         public bool isDemoScene;
         public MeshRenderer targetRenderer;
 

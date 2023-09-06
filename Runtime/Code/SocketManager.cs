@@ -8,6 +8,7 @@ namespace Socket
     public struct Env
     {
         public string serverURL;
+        public bool isScene1;
     }
 
     public class SocketManager : MonoBehaviour
@@ -46,7 +47,7 @@ namespace Socket
                 socket.transform.parent = gameObject.transform;
             }
 
-            socket.Init(env.serverURL);
+            socket.Init(env.serverURL, env.isScene1);
         }
         
         // Start is called before the first frame update
@@ -58,6 +59,13 @@ namespace Socket
         public void Send_Message(string data)
         {
             socket.Send_Message(data);
+        }
+
+        private void OnValidate()
+        {
+            if (socket == null) return;
+
+            socket._isScene1 = env.isScene1;
         }
     }
 }
