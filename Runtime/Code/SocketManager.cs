@@ -8,7 +8,12 @@ namespace Socket
     public struct Env
     {
         public string serverURL;
+        public string serverURL_Scene1_GMAF;
+        public string serverURL_Scene2_GMAF;
+        public string serverURL_Scene1_YAAD;
+        public string serverURL_Scene2_YAAD;
         public bool isScene1;
+        public bool isGMAF;
     }
 
     public class SocketManager : MonoBehaviour
@@ -45,6 +50,30 @@ namespace Socket
                 GameObject obj = new GameObject("P5_Websocket");
                 socket = obj.AddComponent<Socket.P5_Websocket>();
                 socket.transform.parent = gameObject.transform;
+            }
+
+            if(env.isGMAF)
+            {
+                if(env.isScene1)
+                {
+                    env.serverURL = env.serverURL_Scene1_GMAF;
+                }
+                else
+                {
+                    env.serverURL = env.serverURL_Scene2_GMAF;
+                }
+            }
+            else
+            {
+                if (env.isScene1)
+                {
+                    env.serverURL = env.serverURL_Scene1_YAAD;
+                }
+                else
+                {
+                    env.serverURL = env.serverURL_Scene2_YAAD;
+                }
+
             }
 
             socket.Init(env.serverURL, env.isScene1);

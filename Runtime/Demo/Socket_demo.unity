@@ -290,6 +290,26 @@ PrefabInstance:
       propertyPath: env.serverURL
       value: ws://localhost:8074
       objectReference: {fileID: 0}
+    - target: {fileID: 2640136050384007497, guid: 4268a3f940a6e4c4c92f351cc21be9f9,
+        type: 3}
+      propertyPath: env.serverURL_Scene1_GMAF
+      value: ws://192.168.0.40:8074
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640136050384007497, guid: 4268a3f940a6e4c4c92f351cc21be9f9,
+        type: 3}
+      propertyPath: env.serverURL_Scene1_YAAD
+      value: ws://192.168.50.50:8074
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640136050384007497, guid: 4268a3f940a6e4c4c92f351cc21be9f9,
+        type: 3}
+      propertyPath: env.serverURL_Scene2_GMAF
+      value: ws://192.168.0.40:8074
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640136050384007497, guid: 4268a3f940a6e4c4c92f351cc21be9f9,
+        type: 3}
+      propertyPath: env.serverURL_Scene2_YAAD
+      value: ws://192.168.50.50:8074
+      objectReference: {fileID: 0}
     - target: {fileID: 2640136050591976678, guid: 4268a3f940a6e4c4c92f351cc21be9f9,
         type: 3}
       propertyPath: OnTextureUpdated.m_PersistentCalls.m_Calls.Array.size
