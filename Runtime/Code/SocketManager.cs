@@ -52,9 +52,9 @@ namespace Socket
                 socket.transform.parent = gameObject.transform;
             }
 
-            if(env.isGMAF)
+            if (env.isGMAF)
             {
-                if(env.isScene1)
+                if (env.isScene1)
                 {
                     env.serverURL = env.serverURL_Scene1_GMAF;
                 }
